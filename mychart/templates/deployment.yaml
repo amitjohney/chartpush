@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kustomize.toolkit.fluxcd.io/ssa: Override
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
+  labels:
+    mytest: test
+spec:
+  selector:
+    matchLabels:
+      mytest: test
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      namespace: webapp
+      labels:
+        mytest: test
+      name: mynginx
+    spec:
+      containers:
+      - name: nginx
+        image: {{ .Values.image }}

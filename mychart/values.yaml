@@ -1,0 +1,4 @@
+name: myapp
+image: nginx
+replicas: 4
+namespace: webapp
