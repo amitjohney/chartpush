@@ -8,6 +8,7 @@ metadata:
   name: {{ .Values.name }}
   labels:
     mytest: test
+    newversion: testinghr
 spec:
   selector:
     matchLabels:
