@@ -9,6 +9,7 @@ metadata:
   labels:
     mytest: test
     newversion: testinghr
+    color: red
 spec:
   selector:
     matchLabels:
