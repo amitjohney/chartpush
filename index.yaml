@@ -9,6 +9,6 @@ entries:
     name: mychart
     type: application
     urls:
-    - https://amitjohney.github.io/chartpush/mychart-0.1.1.tgz
-    version: 0.1.1
+    - https://amitjohney.github.io/chartpush/mychart-0.1.2.tgz
+    version: 0.1.2
 generated: "2024-12-30T14:10:49.689415364Z"
