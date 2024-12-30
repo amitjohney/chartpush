@@ -10,6 +10,7 @@ metadata:
     mytest: test
     newversion: testinghr
     color: red
+    brown: rangde
 spec:
   selector:
     matchLabels:
