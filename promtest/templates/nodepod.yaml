@@ -1,0 +1,27 @@
+{{- range $_, $node := .Values.nodes }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $node }}
+  namespace: {{ $.Values.namespace }}
+spec:
+  selector:
+    node: exporter-{{ $node }}
+  ports:
+  - port: 80
+    targetPort: 9100
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodepod-{{ $node }}
+  namespace: {{ $.Values.namespace }}
+  labels:
+    node: exporter-{{ $node }}
+spec:
+  containers:
+  - name: mycont
+    image: docker.io/amitkumarjo1994/nodeexporter
+    command: ["./node_exporter"] 
+{{- end }}

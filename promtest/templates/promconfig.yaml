@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: promconfig
+  namespace: {{ .Values.namespace }}
+data:
+  prometheus.yml: |
+    {{- $svclist := list }}  # Initialize the list
+    {{- range $_, $item := .Values.nodes }}
+      {{- $svclist = append $svclist (printf "\"%s.%s.svc.cluster.local\"" $item $.Values.namespace) }}  # Append each item with the correct format
+    {{- end }}
+    
+    global:
+      scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+      evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+    scrape_configs:
+      - job_name: "prometheus"
+        static_configs:
+          - targets: [{{ join "," $svclist }}]  # Join the list with commas

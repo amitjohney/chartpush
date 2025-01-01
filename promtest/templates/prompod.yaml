@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: promsvc
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    promnode: promnode
+  ports:
+  - port: 80
+    targetPort: 9090
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myprompod
+  namespace: {{ .Values.namespace }}
+  labels:
+    promnode: promnode
+spec:
+  containers:
+  - name: mymachine
+    image: docker.io/amitkumarjo1994/promimage
+    volumeMounts:
+    - name: config
+      mountPath: /prometheus/prometheus.yml
+      subPath: prometheus.yml
+  volumes:
+  - name: config
+    configMap:
+      name: promconfig

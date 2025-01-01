@@ -1,0 +1,7 @@
+namespace: default
+nodes:
+- node01
+- node02
+grafana:
+  replicas: 1
+

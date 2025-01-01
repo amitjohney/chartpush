@@ -3,7 +3,7 @@ entries:
   mychart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-01-01T05:41:01.314519602Z"
+    created: "2025-01-01T09:46:03.123548767Z"
     description: A Helm chart for Kubernetes
     digest: 9d76128787ce919c4017de02e128364ee3f2e97a35b9cd3690f7b94a551d5dc9
     name: mychart
@@ -14,7 +14,17 @@ entries:
   promtest:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-01-01T05:41:01.314779415Z"
+    created: "2025-01-01T09:46:03.123872432Z"
+    description: A Helm chart for Kubernetes
+    digest: d728e92bb55f3c2d042862a24a17dab7d2acc66f7c597098de79d7bd19e271d2
+    name: promtest
+    type: application
+    urls:
+    - https://amitjohney.github.io/chartpush/promtest-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-01-01T09:46:03.123683307Z"
     description: A Helm chart for Kubernetes
     digest: 75b73e43e9ae07e7b0c8784fb537c2aa14e30ef3f475373142f4ff217da311f3
     name: promtest
@@ -22,4 +32,4 @@ entries:
     urls:
     - https://amitjohney.github.io/chartpush/promtest-0.1.0.tgz
     version: 0.1.0
-generated: "2025-01-01T05:41:01.314072272Z"
+generated: "2025-01-01T09:46:03.123203641Z"
