@@ -22,6 +22,6 @@ metadata:
 spec:
   containers:
   - name: mycont
-    image: docker.io/amitkumarjo1994/nodeexporter
-    command: ["./node_exporter"] 
+    image: docker.io/amitkumarjo1994/testbox:latest
+    command: ["sh","-c","./node_exporter"] 
 {{- end }}

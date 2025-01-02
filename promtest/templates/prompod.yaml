@@ -21,11 +21,25 @@ metadata:
 spec:
   containers:
   - name: mymachine
-    image: docker.io/amitkumarjo1994/promimage
+    image: docker.io/amitkumarjo1994/testbox:latest
+    command: ["./prometheus"]
     volumeMounts:
     - name: config
-      mountPath: /prometheus/prometheus.yml
+      mountPath: /opt/prometheus.yml
       subPath: prometheus.yml
+    - name: config
+      mountPath: /opt/rules.yml
+      subPath: rules.yml
+  - name: newmachine
+    image: docker.io/amitkumarjo1994/pushg:latest
+    command: ["bash","-c","./pushmetrics.sh"]
+    env:
+    - name: NUMBER
+      value: "{{ .Values.upper_limit_counter }}"
+    - name: METRICS_NAME
+      value: {{ .Values.custom_metric_name }}
+    - name: NAMESPACE
+      value: {{ .Values.namespace }}
   volumes:
   - name: config
     configMap:

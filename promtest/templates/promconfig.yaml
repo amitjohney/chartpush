@@ -4,6 +4,18 @@ metadata:
   name: promconfig
   namespace: {{ .Values.namespace }}
 data:
+  rules.yml: |
+    groups:
+    - name: sample-alerts
+      rules:
+      - alert: CustomAlert
+        expr: {{ .Values.custom_metric_name }} > {{ .Values.alert_trigger_value }}
+        labels:
+          useless: alerting
+          teststring: test
+        annotations:
+          message: "The useless alert value is {{ .Value }} for the label {{ .Labels }}"
+
   prometheus.yml: |
     {{- $svclist := list }}  # Initialize the list
     {{- range $_, $item := .Values.nodes }}
@@ -11,9 +23,20 @@ data:
     {{- end }}
     
     global:
-      scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-      evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+      scrape_interval: 1s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+      evaluation_interval: 1s # Evaluate rules every 15 seconds. The default is every 1 minute.
+    rule_files:
+    - "rules.yml"
+    alerting:
+      alertmanagers:
+        - static_configs:
+            - targets:
+                - 'alertmanager.default.svc.cluster.local'
     scrape_configs:
       - job_name: "prometheus"
         static_configs:
           - targets: [{{ join "," $svclist }}]  # Join the list with commas
+      - job_name: "pushgateway"
+        honor_labels: true
+        static_configs:
+          - targets: ["pushgateway.default.svc.cluster.local"]  # Join the list with commas

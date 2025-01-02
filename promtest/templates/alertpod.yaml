@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: alertmanager
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    alertmanager: alertmanager
+  ports:
+  - port: 80
+    targetPort: 9093
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: alertmanager
+  namespace: {{ .Values.namespace }}
+  labels:
+    alertmanager: alertmanager
+spec:
+  containers:
+  - name: alertcontainer
+    image: docker.io/amitkumarjo1994/testbox:latest
+    command: ["./alertmanager"]
