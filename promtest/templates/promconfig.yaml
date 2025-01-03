@@ -24,9 +24,9 @@ data:
       - alert: Alert-{{ $item.name }}
         expr: {{ $item.name }} > {{ $item.alert_trigger_value }}
         annotations:
-          message: "The is Alert message for {{ $item.name }}  and value is {{ `{{ .Value }}` }}"
+          message: "The is Alert message for {{ $item.name }}  and value is {{ `{{ .Value }}` }} for instance {{ `{{ .Labels.job }}` }}"
         labels:
-          team: dev
+          category: {{ $item.category }}
 {{- end }}
 
   prometheus.yml: |

@@ -12,9 +12,9 @@ data:
       repeat_interval: 1h
       receiver: "web"
       routes:
-      - match:
-          team: dev
-        group_by: [team]
+      - match_re:
+          category: (dev|prod)
+        group_by: ["category"]
         receiver: slack
     receivers:
       - name: "web"
@@ -24,10 +24,10 @@ data:
         slack_configs:
         - api_url: "{{ .Values.slack.webhook_url }}"
           channel: "{{ .Values.slack.channel }}"
-          title: 'Alert Name {{ `Group Labels = {{ .GroupLabels.team }}` }}'
+          title: 'Alert Name {{ `Group Labels = {{ .GroupLabels.category }}` }}'
           text: '{{ `{{ range .Alerts }} {{ .Annotations.message }} {{ "\n" }} {{ end }}` }}'
           http_config:
-            proxy_url: "http://172.20.73.196:3128"
+            proxy_url: "{{ .Values.proxies.https_proxy }}"
             tls_config:
               insecure_skip_verify: true
 ---

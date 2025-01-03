@@ -8,12 +8,13 @@ grafana:
 honor_labels: true # If you turn it off the labels passed during POST request of metrics towards pushgateway will come as exported_
 #Notification System for Alertmanager
 slack:
-  webhook_url: "https://hooks.slack.com/services/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"
+  webhook_url: "https://hooks.slack.com/services/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"
   channel: "#monitoring"
 
 custom_metrics:
   - name: testmetrics
     job_name: testjob
+    category: dev
     labels:
       color: green
       priority: high
@@ -22,6 +23,7 @@ custom_metrics:
     upper_limit_counter: 2000
   - name: anothertestmetrics
     job_name: anotherjob
+    category: dev
     labels:
       color: black
       prority: low
@@ -31,6 +33,7 @@ custom_metrics:
 
   - name: amitmetrics
     job_name: finaljob
+    category: prod
     labels:
       color: black
       prority: low
@@ -40,13 +43,13 @@ custom_metrics:
 
   - name: fastmetrics
     job_name: finaljob
+    category: prod
     labels:
       color: black
       prority: low
         #experiment: "true"
     alert_trigger_value: 100
     upper_limit_counter: 200
-      #proxies:
-      #  http_proxy: http://172.20.73.196:3128
-      #  https_proxy: http://172.20.73.196:3128
+proxies:
+  https_proxy: http://172.20.73.196:3128
       #  no_proxy: ".svc.cluster.local"

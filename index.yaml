@@ -2,13 +2,13 @@ apiVersion: v1
 entries:
   promtest:
   - apiVersion: v2
-    appVersion: 4.20.2
-    created: "2025-01-03T12:39:18.998688245Z"
+    appVersion: 5.20.2
+    created: "2025-01-03T14:21:30.394391813Z"
     description: Monitory toy
-    digest: 19cc45b87c04b45801f2210db6c9a869911c0aa6c1c266e50a18af3355ce159a
+    digest: 1f2407f21f7ed4040e93a2fd68d8da1aea7fd78eb9cc4bebd0fdcd7aa17659b0
     name: promtest
     type: application
     urls:
-    - https://amitjohney.github.io/chartpush/promtest-0.4.0.tgz
-    version: 0.4.0
-generated: "2025-01-03T12:39:18.998203518Z"
+    - https://amitjohney.github.io/chartpush/promtest-0.5.0.tgz
+    version: 0.5.0
+generated: "2025-01-03T14:21:30.393740543Z"
