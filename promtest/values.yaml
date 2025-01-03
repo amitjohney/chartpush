@@ -13,7 +13,7 @@ custom_metrics:
       color: green
       priority: high
     alert_trigger_value: 500
-    upper_limit_counter: 1000
+    upper_limit_counter: 2000
   - name: anothertestmetrics
     job_name: anotherjob
     labels:
@@ -22,3 +22,22 @@ custom_metrics:
     alert_trigger_value: 800
     upper_limit_counter: 2000
 
+  - name: amitmetrics
+    job_name: finaljob
+    labels:
+      color: black
+      prority: low
+    alert_trigger_value: 100
+    upper_limit_counter: 1000
+
+  - name: fastmetrics
+    job_name: finaljob
+    labels:
+      color: black
+      prority: low
+    alert_trigger_value: 100
+    upper_limit_counter: 200
+      #proxies:
+      #  http_proxy: http://172.20.73.196:3128
+      #  https_proxy: http://172.20.73.196:3128
+      #  no_proxy: ".svc.cluster.local"

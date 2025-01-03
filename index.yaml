@@ -2,13 +2,13 @@ apiVersion: v1
 entries:
   promtest:
   - apiVersion: v2
-    appVersion: 2.20.2
-    created: "2025-01-03T03:01:43.067253501Z"
-    description: A Helmchart to deploy small monitoring stack to play
-    digest: 4577c494f174826b39ddd182c78b61fa60b42fb511c15346e7b215102e2641ed
+    appVersion: 3.20.2
+    created: "2025-01-03T11:34:15.142333942Z"
+    description: Monitory toy
+    digest: 88ef764b1322a467611ad909361883388e4ae05f202aef04f37c03eeab1bdd3c
     name: promtest
     type: application
     urls:
-    - https://amitjohney.github.io/chartpush/promtest-0.2.0.tgz
-    version: 0.2.0
-generated: "2025-01-03T03:01:43.066769769Z"
+    - https://amitjohney.github.io/chartpush/promtest-0.3.0.tgz
+    version: 0.3.0
+generated: "2025-01-03T11:34:15.141813569Z"

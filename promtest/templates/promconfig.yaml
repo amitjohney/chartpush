@@ -4,6 +4,18 @@ metadata:
   name: promconfig
   namespace: {{ .Values.namespace }}
 data:
+  sd_file.json: |
+    [
+        {
+            "targets": [
+                "dhost01",
+                "dhost02"
+            ],
+            "labels": {
+                "newlabel": "value"
+            }
+        }
+    ]
   rules.yml: |
     groups:
     - name: SAMPLE ALERTS
@@ -12,7 +24,9 @@ data:
       - alert: Alert-{{ $item.name }}
         expr: {{ $item.name }} > {{ $item.alert_trigger_value }}
         annotations:
-          message: "The is Alert message for {{ $item.name }}"
+          message: "The is Alert message for {{ $item.name }}  and value is {{ `{{ .Value }}` }}"
+        labels:
+          team: dev
 {{- end }}
 
   prometheus.yml: |
@@ -44,3 +58,9 @@ data:
           - targets: ["pushgateway.default.svc.cluster.local"]  # Join the list with commas
             labels:
               experiment: true
+
+      - job_name: "newtargets"
+        file_sd_configs:
+          - files:
+              - "sd_file.json"
+

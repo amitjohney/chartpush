@@ -45,6 +45,9 @@ spec:
     - name: config
       mountPath: /opt/rules.yml
       subPath: rules.yml
+    - name: config
+      mountPath: /opt/sd_file.json
+      subPath: sd_file.json
   - name: newmachine
     image: docker.io/amitkumarjo1994/pushgscript:latest
     command: ["bash","-c","./pushmetrics.sh"]
