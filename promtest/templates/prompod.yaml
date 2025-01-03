@@ -1,3 +1,18 @@
+{{- $finalresult := "" }}
+{{- range $_, $item := .Values.custom_metrics }}
+  {{- $dict := $item.labels }}   
+  {{- $pairs := list }}       
+
+  {{- range $key, $value := $dict }}
+    {{- $pairs = append $pairs (printf "%s-%s" $key $value) }}   
+  {{- end }}
+
+  {{- $result := printf "%s:%s:%s:%s:%s" ($item.job_name) ($item.alert_trigger_value|toString) ($item.upper_limit_counter|toString) $item.name (join "-" $pairs) }}
+
+  {{- $finalresult = printf "%s/%s" $finalresult $result }}
+{{- end }}
+
+
 ---
 apiVersion: v1
 kind: Service
@@ -31,15 +46,13 @@ spec:
       mountPath: /opt/rules.yml
       subPath: rules.yml
   - name: newmachine
-    image: docker.io/amitkumarjo1994/pushg:latest
+    image: docker.io/amitkumarjo1994/pushgscript:latest
     command: ["bash","-c","./pushmetrics.sh"]
     env:
-    - name: NUMBER
-      value: "{{ .Values.upper_limit_counter }}"
-    - name: METRICS_NAME
-      value: {{ .Values.custom_metric_name }}
     - name: NAMESPACE
       value: {{ .Values.namespace }}
+    - name: OS
+      value: {{ $finalresult }}
   volumes:
   - name: config
     configMap:

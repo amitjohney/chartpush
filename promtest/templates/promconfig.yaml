@@ -6,15 +6,14 @@ metadata:
 data:
   rules.yml: |
     groups:
-    - name: sample-alerts
+    - name: SAMPLE ALERTS
       rules:
-      - alert: CustomAlert
-        expr: {{ .Values.custom_metric_name }} > {{ .Values.alert_trigger_value }}
-        labels:
-          useless: alerting
-          teststring: test
+{{- range $_, $item := .Values.custom_metrics }}
+      - alert: Alert-{{ $item.name }}
+        expr: {{ $item.name }} > {{ $item.alert_trigger_value }}
         annotations:
-          message: "The useless alert value is {{ .Value }} for the label {{ .Labels }}"
+          message: "The is Alert message for {{ $item.name }}"
+{{- end }}
 
   prometheus.yml: |
     {{- $svclist := list }}  # Initialize the list
@@ -36,7 +35,12 @@ data:
       - job_name: "prometheus"
         static_configs:
           - targets: [{{ join "," $svclist }}]  # Join the list with commas
+            labels:
+              quality: good
+              kumar: amit
       - job_name: "pushgateway"
-        honor_labels: true
+        honor_labels: {{ .Values.honor_labels | default false }}
         static_configs:
           - targets: ["pushgateway.default.svc.cluster.local"]  # Join the list with commas
+            labels:
+              experiment: true

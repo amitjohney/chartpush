@@ -5,7 +5,20 @@ nodes:
 grafana:
   replicas: 1
 
-custom_metric_name: differentmetrics
-alert_trigger_value: 200
-upper_limit_counter: 2000
+    #honor_labels: true
+custom_metrics:
+  - name: testmetrics
+    job_name: testjob
+    labels:
+      color: green
+      priority: high
+    alert_trigger_value: 500
+    upper_limit_counter: 1000
+  - name: anothertestmetrics
+    job_name: anotherjob
+    labels:
+      color: black
+      prority: low
+    alert_trigger_value: 800
+    upper_limit_counter: 2000
 

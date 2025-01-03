@@ -1,45 +1,14 @@
 apiVersion: v1
 entries:
-  mychart:
-  - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2025-01-02T13:51:20.885700189Z"
-    description: A Helm chart for Kubernetes
-    digest: 9d76128787ce919c4017de02e128364ee3f2e97a35b9cd3690f7b94a551d5dc9
-    name: mychart
-    type: application
-    urls:
-    - https://amitjohney.github.io/chartpush/mychart-0.1.3.tgz
-    version: 0.1.3
   promtest:
   - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2025-01-02T13:51:20.88629693Z"
+    appVersion: 2.20.2
+    created: "2025-01-03T03:01:43.067253501Z"
     description: A Helmchart to deploy small monitoring stack to play
-    digest: 80a563a1eaadd187fc9df8909b6266906c7a74c3fbe89645836da4b620f38e39
+    digest: 4577c494f174826b39ddd182c78b61fa60b42fb511c15346e7b215102e2641ed
     name: promtest
     type: application
     urls:
-    - https://amitjohney.github.io/chartpush/promtest-0.1.2.tgz
-    version: 0.1.2
-  - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2025-01-02T13:51:20.886050909Z"
-    description: A Helm chart for Kubernetes
-    digest: d728e92bb55f3c2d042862a24a17dab7d2acc66f7c597098de79d7bd19e271d2
-    name: promtest
-    type: application
-    urls:
-    - https://amitjohney.github.io/chartpush/promtest-0.1.1.tgz
-    version: 0.1.1
-  - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2025-01-02T13:51:20.885868094Z"
-    description: A Helm chart for Kubernetes
-    digest: 75b73e43e9ae07e7b0c8784fb537c2aa14e30ef3f475373142f4ff217da311f3
-    name: promtest
-    type: application
-    urls:
-    - https://amitjohney.github.io/chartpush/promtest-0.1.0.tgz
-    version: 0.1.0
-generated: "2025-01-02T13:51:20.88535905Z"
+    - https://amitjohney.github.io/chartpush/promtest-0.2.0.tgz
+    version: 0.2.0
+generated: "2025-01-03T03:01:43.066769769Z"

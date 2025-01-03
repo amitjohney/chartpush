@@ -1,0 +1,12 @@
+{{- $dict := .Values.custom_metrics }}   # Assuming myDict is defined in your values file
+{{- $pairs := list }}            # Create an empty list to hold the key-value pairs
+
+{{- range $key, $value := $dict }}
+  {{- $pairs = append $pairs (printf "%s/%s" $key $value) }}   # Append each key-value pair to the list
+{{- end }}
+
+# Join the key-value pairs with slashes
+{{- $result := join "/" $pairs }}
+
+# Output the final result
+{{- $result }}
