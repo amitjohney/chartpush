@@ -22,8 +22,8 @@ data:
           - url: 'http://127.0.0.1:5001/'
       - name: slack
         slack_configs:
-        - api_url: "https://hooks.slack.com/services/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"
-          channel: '#monitoring'
+        - api_url: "{{ .Values.slack.webhook_url }}"
+          channel: "{{ .Values.slack.channel }}"
           title: 'Alert Name {{ `Group Labels = {{ .GroupLabels.team }}` }}'
           text: '{{ `{{ range .Alerts }} {{ .Annotations.message }} {{ "\n" }} {{ end }}` }}'
           http_config:
